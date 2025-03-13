@@ -1,0 +1,99 @@
+/* Home.css */
+
+.container {
+    background-color: #e3f2fd;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .icon {
+    margin-bottom: 1.5rem;
+    width: 500px;
+    height: 120px;
+  }
+  
+  .header {
+    color: #0288d1;
+    text-align: center;
+    font-weight: bold;
+    font-size: 3rem;
+    background: linear-gradient(45deg, #0288d1, #03a9f4);
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 1.5rem;
+  }
+  
+  .subHeader {
+    color: #424242;
+    font-size: 1.25rem;
+  }
+  
+  .buttonLogin,
+  .buttonSignup {
+    color: #fff;
+    border-radius: 30px;
+    border: none;
+    font-size: 1.2rem;
+    padding: 0.75rem 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .buttonLogin {
+    background-color: #ff9800;
+  }
+  
+  .buttonLogin:hover {
+    background-color: #e68900;
+  }
+  
+  .buttonSignup {
+    background-color: #03a9f4;
+  }
+  
+  .buttonSignup:hover {
+    background-color: #0288d1;
+  }
+  
+  .modal {
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modalHeader {
+    background-color: #0288d1;
+    color: #fff;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .modalTitle {
+    font-weight: bold;
+  }
+  
+  .formLabel {
+    color: #424242;
+    font-size: 1.1rem;
+  }
+  
+  .formControl {
+    font-size: 1.2rem;
+    border-color: #0288d1;
+    border-radius: 8px;
+  }
+  
+  .submitButton {
+    background-color: #ff9800;
+    color: #fff;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    border: none;
+    padding: 0.75rem 2rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submitButton:hover {
+    background-color: #e68900;
+  }
+  

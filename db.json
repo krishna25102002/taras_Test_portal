@@ -1,0 +1,433 @@
+{
+  "AdminTestControl": {
+    "embedded": true,
+    "vlsi": true,
+    "both": true
+  },
+  "embeddedquestions": [
+    {
+      "section": "Embedded",
+      "part": "part1",
+      "question": "Which programming language is most used in embedded systems?",
+      "options": [
+        "Python",
+        "Java",
+        "C",
+        "Ruby"
+      ],
+      "correctOption": 2,
+      "imageUrl": "https://dummyimage.com/600x400/000/fff&text=Embedded+2",
+      "id": "Q8-GhytZ"
+    },
+    {
+      "section": "Embedded",
+      "part": "part2",
+      "question": "What is the main advantage of embedded systems?",
+      "options": [
+        "They are fast",
+        "They are multifunctional",
+        "They are designed for specific tasks",
+        "They are more expensive"
+      ],
+      "correctOption": 2,
+      "imageUrl": "https://dummyimage.com/600x400/000/fff&text=Embedded+3",
+      "id": "Q9-FtrY"
+    },
+    {
+      "section": "Embedded",
+      "part": "part2",
+      "question": "Which of the following is an example of an embedded system?",
+      "options": [
+        "Laptop",
+        "Smartphone",
+        "Washing machine",
+        "Server"
+      ],
+      "correctOption": 2,
+      "imageUrl": "https://dummyimage.com/600x400/000/fff&text=Embedded+4",
+      "id": "T5-Nbvt"
+    },
+    {
+      "section": "Embedded",
+      "part": "part3",
+      "question": "What is real-time operating system (RTOS) used for in embedded systems?",
+      "options": [
+        "To handle network requests",
+        "To manage multiple threads with precise timing",
+        "To run GUI applications",
+        "None of the above"
+      ],
+      "correctOption": 1,
+      "imageUrl": "https://dummyimage.com/600x400/000/fff&text=Embedded+5",
+      "id": "R3-QytK"
+    },
+    {
+      "section": "Embedded",
+      "part": "part3",
+      "question": "What is an interrupt in embedded systems?",
+      "options": [
+        "A pause in system operation",
+        "A signal from hardware or software indicating an event",
+        "A type of memory",
+        "A debugging method"
+      ],
+      "correctOption": 1,
+      "imageUrl": "https://dummyimage.com/600x400/000/fff&text=Embedded+6",
+      "id": "M9-Bvrc"
+    },
+    {
+      "section": "Embedded",
+      "part": "part1",
+      "question": "csk full form",
+      "options": [
+        "chennai",
+        "super",
+        "kings",
+        "csk"
+      ],
+      "correctOption": 0,
+      "imageUrl": "",
+      "id": "tJnwXXL"
+    },
+    {
+      "id": "d71f",
+      "section": "Embedded",
+      "part": "part1",
+      "question": "kdmo;",
+      "options": [
+        "d",
+        "vk",
+        "kefn",
+        " vkd"
+      ],
+      "correctOption": 2,
+      "imageUrl": "https://th.bing.com/th/id/OIP.GPFEY6kfgxbsja6gmrW6rwAAAA?rs=1&pid=ImgDetMain"
+    },
+    {
+      "id": "72c3",
+      "section": "Embedded",
+      "part": "part1",
+      "question": "what is vectore?",
+      "options": [
+        "a",
+        "d",
+        "g",
+        "gg"
+      ],
+      "correctOption": 3,
+      "imageUrl": ""
+    }
+  ],
+  "vlsiquestions": [
+    {
+      "section": "VLSI",
+      "part": "part1",
+      "question": "What does VLSI stand for?",
+      "options": [
+        "Very Long-Scale Integration",
+        "Very Large-Scale Integration",
+        "Variable Linear System Integration",
+        "None of the above"
+      ],
+      "correctOption": 1,
+      "imageUrl": "https://dummyimage.com/600x400/000/fff&text=VLSI+1",
+      "id": "8udH3Wt"
+    },
+    {
+      "section": "VLSI",
+      "part": "part1",
+      "question": "Which of the following is a key component in VLSI?",
+      "options": [
+        "Capacitor",
+        "Transistor",
+        "Inductor",
+        "Resistor"
+      ],
+      "correctOption": 1,
+      "imageUrl": "https://dummyimage.com/600x400/000/fff&text=VLSI+2",
+      "id": "7ujF4Ds"
+    },
+    {
+      "section": "VLSI",
+      "part": "part2",
+      "question": "What is Moore's Law related to?",
+      "options": [
+        "Power consumption in ICs",
+        "The number of transistors in an IC doubles approximately every two years",
+        "Battery life of IC-based devices",
+        "None of the above"
+      ],
+      "correctOption": 1,
+      "imageUrl": "https://dummyimage.com/600x400/000/fff&text=VLSI+3",
+      "id": "Em_H1Tc"
+    },
+    {
+      "section": "VLSI",
+      "part": "part2",
+      "question": "Which tool is commonly used for VLSI design?",
+      "options": [
+        "MATLAB",
+        "Xilinx",
+        "AutoCAD",
+        "SolidWorks"
+      ],
+      "correctOption": 1,
+      "imageUrl": "https://dummyimage.com/600x400/000/fff&text=VLSI+4",
+      "id": "3mp_Yt5"
+    },
+    {
+      "section": "VLSI",
+      "part": "part3",
+      "question": "What is the primary function of a CMOS in VLSI?",
+      "options": [
+        "To store data",
+        "To amplify signals",
+        "To switch between high and low states",
+        "To regulate voltage"
+      ],
+      "correctOption": 2,
+      "imageUrl": "https://dummyimage.com/600x400/000/fff&text=VLSI+5",
+      "id": "6lu_Kt8"
+    },
+    {
+      "section": "VLSI",
+      "part": "part3",
+      "question": "Which of the following is an advantage of VLSI technology?",
+      "options": [
+        "Low power consumption",
+        "Large size",
+        "High heat generation",
+        "Low speed"
+      ],
+      "correctOption": 0,
+      "imageUrl": "https://dummyimage.com/600x400/000/fff&text=VLSI+6",
+      "id": "9vx_Dpl"
+    }
+  ],
+  "students": [
+    {
+      "id": "2ff1",
+      "name": "Krishna Kumar D",
+      "email": "kd@gmail.com",
+      "class": "dwq",
+      "department": "fre",
+      "city": "wfe",
+      "collegeName": "wer",
+      "phoneNumber": "32r",
+      "testSection": "Vlsi",
+      "marks": {
+        "embedded": 0,
+        "vlsi": {
+          "part1": 0,
+          "part2": 0,
+          "part3": 1
+        }
+      },
+      "testCompleted": true
+    },
+    {
+      "name": "Akash",
+      "email": "akash@gmail.com",
+      "class": "1st year",
+      "department": "ECE",
+      "city": "Tiruppur",
+      "collegeName": "NGP",
+      "phoneNumber": "9473742212",
+      "testSection": "Embedded",
+      "marks": {
+        "embedded": 0,
+        "vlsi": 0
+      },
+      "id": "yEOk-BM"
+    },
+    {
+      "id": "8329",
+      "name": "Krishna Kumar D",
+      "email": "kd@gmail.com",
+      "class": "dwq",
+      "department": "fre",
+      "city": "wfe",
+      "collegeName": "wer",
+      "phoneNumber": "32r",
+      "testSection": "Embedded",
+      "marks": {
+        "embedded": 0,
+        "vlsi": 0
+      }
+    },
+    {
+      "id": "1e3d",
+      "name": "krishna",
+      "email": "krishna006669kumar@gmail.com",
+      "class": "ece - a",
+      "department": "ece",
+      "city": "cbe",
+      "collegeName": "NGP",
+      "phoneNumber": "56767676666",
+      "testSection": "",
+      "marks": {
+        "embedded": 0,
+        "vlsi": 0
+      }
+    },
+    {
+      "id": "d68f",
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "class": "ece - a",
+      "department": "ece",
+      "city": "cbe",
+      "collegeName": "NGP",
+      "phoneNumber": "56767676666",
+      "testSection": "Embedded",
+      "marks": {
+        "embedded": 0,
+        "vlsi": 0
+      }
+    },
+    {
+      "id": "ac54",
+      "name": "krishna",
+      "email": "krishna006669kumar@gmail.com",
+      "class": "ece - a",
+      "department": "ece",
+      "city": "cbe",
+      "collegeName": "NGP",
+      "phoneNumber": "56767676666",
+      "testSection": "Embedded",
+      "marks": {
+        "embedded": 0,
+        "vlsi": 0
+      }
+    },
+    {
+      "id": "f21a",
+      "name": "krishna",
+      "email": "krishna006669kumar@gmail.com",
+      "class": "ece - a",
+      "department": "ece",
+      "city": "cbe",
+      "collegeName": "NGP",
+      "phoneNumber": "9965774500",
+      "testSection": "Both",
+      "marks": {
+        "embedded": {
+          "part1": 0,
+          "part2": 0,
+          "part3": 0
+        },
+        "vlsi": 0
+      }
+    },
+    {
+      "id": "2ffe",
+      "name": "krishna",
+      "email": "krishna006669kumar@gmail.com",
+      "class": "ece - a",
+      "department": "ece",
+      "city": "cbe",
+      "collegeName": "NGP",
+      "phoneNumber": "9965774500",
+      "testSection": "Embedded",
+      "marks": {
+        "embedded": 0,
+        "vlsi": 0
+      }
+    },
+    {
+      "id": "894f",
+      "name": "krishna",
+      "email": "krishna006669kumar@gmail.com",
+      "class": "ece - a",
+      "department": "ece",
+      "city": "cbe",
+      "collegeName": "NGP",
+      "phoneNumber": "9965774500",
+      "testSection": "Embedded",
+      "marks": {
+        "embedded": 0,
+        "vlsi": 0
+      }
+    }
+  ],
+  "users": [
+    {
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "password": "$2a$10$IdhLnsaibbWmVWKCtxo/jOuMuRO.nQ.in4/a2hgWBkQJb6ZKp.njm",
+      "id": "8QCAR7Y"
+    },
+    {
+      "name": "Akash",
+      "email": "akash@gmail.com",
+      "password": "$2a$10$hwJy5dEEU4ITBGfU1yGz7eDG/6otb1VDF5TAGMAHrF3hv2.nJuUIe",
+      "id": "E1WOzBw"
+    },
+    {
+      "name": "Akash",
+      "email": "akash1@gmail.com",
+      "password": "$2a$10$iVq5HzqM97nz6uGV9pWNHevvBQoTjxZAYsYFP7f4Yb9MOEJCZup6S",
+      "id": "L8K8oRU"
+    },
+    {
+      "id": "fc1a",
+      "name": "krishna kumar D",
+      "email": "krishna0006669kumar@gmail.com",
+      "password": "$2a$10$zLDDzwYzDTekFVT.1QPc8.EoHk33QikIg9W.DpLplfXdwrjDpbXw2"
+    },
+    {
+      "id": "92de",
+      "name": "Krishna Kumar D",
+      "email": "dfsagagg@gmail.com",
+      "password": "$2a$10$SJ5IKZFBogc5WBuQWr0lhOMGK.IGrH4SONwHNEoWU4ctwUu2u7rSK"
+    },
+    {
+      "id": "7ae1",
+      "name": "Krishna Kumar D",
+      "email": "fggdsgfg@gmail.com",
+      "password": "$2a$10$5HSVk7nnuDt5N/o2c/WTDuA3Lt.CWsJcZPuUVimZPezo7Wlr1Mb9."
+    },
+    {
+      "id": "75ce",
+      "name": "Krishna Kumar D",
+      "email": "dfs@gmail.com",
+      "password": "$2a$10$cc9IgKG7LK1tByZUd8kji.KD3bgosIJbUfmWU5lD5MYmW2oCPw.d2"
+    },
+    {
+      "id": "39f9",
+      "name": "Krishna Kumar D",
+      "email": "g@gmail.com",
+      "password": "$2a$10$D6XLNyhLN./sR6x.cQcLoOsVI.TjAGp2APNBHIpRRCCUxWYqnaGk6"
+    },
+    {
+      "id": "1c45",
+      "name": "Krishna Kumar D",
+      "email": "ad@gmail.com",
+      "password": "$2a$10$AlTGwQgOMNN83RHScRLXSOCbE7HTalIjJTV.4lDfng3HGcsltQ2bC"
+    },
+    {
+      "id": "8b51",
+      "name": "Krishna Kumar D",
+      "email": "assd@gmail.com",
+      "password": "$2a$10$9ewWhNppR4F1cry6f.wzzOTUCpq4xJy6iwsLfbJOC5hB6cZvCQdk6"
+    },
+    {
+      "id": "0c29",
+      "name": "Krishna Kumar D",
+      "email": "kd@gmail.com",
+      "password": "$2a$10$uZ7i1Yr5LxGzVjEpKgHSYOBgF/Ldsjx2AxLB/U3QjsIePr/LlEZWC"
+    },
+    {
+      "name": "Kavin",
+      "email": "kavin@gmail.com",
+      "password": "$2a$10$.IwVudyb6H3y.gkVw/0etO/lFi7mzCGVjU6tptt2Ud8R9ZfVplbBK",
+      "id": "BsyQSPg"
+    },
+    {
+      "id": "8c2b",
+      "name": "krishna",
+      "email": "krishna006669kumar@gmail.com",
+      "password": "$2a$10$GK0REuFP6cUTpdKdL9QRI.fAs8nLIq3M0BqjmArPdGPsfLdRt8gGi"
+    }
+  ]
+}

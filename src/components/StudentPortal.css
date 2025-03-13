@@ -1,0 +1,46 @@
+.student-portal-container {
+    margin-top: 5rem;
+    background-color: #f0f8ff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .student-portal-header {
+    color: #ff6600;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+  }
+  
+  .student-portal-form {
+    margin-top: 2rem;
+  }
+  
+  .student-portal-label {
+    color: #003366;
+    margin-bottom: 0.5rem;
+  }
+  
+  .student-portal-input {
+    border-color: #ff6600;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  
+  .student-portal-button {
+    background-color: #ff6600;
+    border-color: #ff6600;
+    color: #fff;
+    border-radius: 4px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .student-portal-button:hover {
+    background-color: #e65c00;
+  }
+  
