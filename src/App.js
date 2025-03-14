@@ -1,43 +1,53 @@
 // src/App.js
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, useParams } from 'react-router-dom';
-import AdminPortal from './components/AdminPortal';
-import AddQuestion from './components/AddQuestion';
-import StudentPortal from './components/StudentPortal';
-import TestPage from './components/TestPage';
-import Home from './components/Home';
-import AdminResults from './components/AdminResults';
-import EditEmbeddedQuestion from './components/EditEmbeddedQuestion';
-import EditVLSIQuestion from './components/EditVLSIQuestion';
-import ThankYouPage from './components/ThankYouPage';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useParams,
+} from "react-router-dom";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import AdminPortal from "./components/AdminSide/AdminPortal";
+import AddQuestion from "./components/AdminAddingQuestions/AddQuestion";
+import StudentPortal from "./components/StudentSidePages/StudentPortal";
+import TestPage from "./components/TestAttendingPages/TestPage";
+import Home from "./components/HomePage/Home";
+import AdminResults from "./components/AdminSide/AdminResults";
+import EditEmbeddedQuestion from "./components/EditQuestionsPages/EditEmbeddedQuestion";
+import EditVLSIQuestion from "./components/EditQuestionsPages/EditVLSIQuestion";
+import ThankYouPage from "./components/ThanksPages/ThankYouPage";
 // import MarksPieChart from './components/charts/MarksPieChart';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          {/* Admin Portal Routes */}
-          <Route path="/admin" element={<AdminPortal />} />
-          <Route path="/admin/add" element={<AddQuestion />} />
-          <Route path="/admin/edit/embedded/:id" element={<EditEmbeddedQuestion />} />
-          <Route path="/admin/edit/vlsi/:id" element={<EditVLSIQuestion />} />
-          <Route path="/admin/results" element={<AdminResults />} />
-          {/* <Route path="/admin/charts" element={<MarksPieChart />} /> */}
+    <GoogleOAuthProvider clientId="448430774246-9bu60as3s9fcjapbabln7fsfs4nuc43k.apps.googleusercontent.com">
+      <Router>
+        <div className="App">
+          <Routes>
+            {/* Admin Portal Routes */}
+            <Route path="/admin" element={<AdminPortal />} />
+            <Route path="/admin/add" element={<AddQuestion />} />
+            <Route
+              path="/admin/edit/embedded/:id"
+              element={<EditEmbeddedQuestion />}
+            />
+            <Route path="/admin/edit/vlsi/:id" element={<EditVLSIQuestion />} />
+            <Route path="/admin/results" element={<AdminResults />} />
+            {/* <Route path="/admin/charts" element={<MarksPieChart />} /> */}
 
-          {/* Student Portal Route */}
-          <Route path="/student" element={<StudentPortal />} />
+            {/* Student Portal Route */}
+            <Route path="/student" element={<StudentPortal />} />
 
-          {/* Test Page Routes */}
-          <Route path="/test/:section" element={<TestPageWrapper />} />
-          <Route path="/thank-you" element={<ThankYouPage />} />
+            {/* Test Page Routes */}
+            <Route path="/test/:section" element={<TestPageWrapper />} />
+            <Route path="/thank-you" element={<ThankYouPage />} />
 
-
-          {/* Default Route with Portal selection */}
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </div>
-    </Router>
+            {/* Default Route with Portal selection */}
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </div>
+      </Router>
+    </GoogleOAuthProvider>
   );
 }
 
