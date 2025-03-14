@@ -6,6 +6,7 @@ import { FaGoogle, FaFacebook } from "react-icons/fa";
 import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
 import "./Home.css";
 import axios from "axios"; // Import axios
+import { sendOTP, verifyOTP } from "../../api/authService"; // Import sendOTP and verifyOTP functions
 
 const Home = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -17,6 +18,7 @@ const Home = () => {
   const [showOtpField, setShowOtpField] = useState(false);
   const [otp, setOtp] = useState("");
   const [isOtpVerified, setIsOtpVerified] = useState(false);
+  const [googleUserData, setGoogleUserData] = useState(null);
   const navigate = useNavigate();
 
   const handleLoginShow = () => setShowLoginModal(true);
@@ -36,7 +38,7 @@ const Home = () => {
       if (user.email === "admin@gmail.com" && password === "Admin@123") {
         navigate("/admin");
       } else {
-        navigate("/signup");
+        navigate("/student");
       }
     } catch (error) {
       alert(error.message);
@@ -80,22 +82,18 @@ const Home = () => {
           }
         );
 
-        const user = {
+        const userData = {
           name: response.data.name,
           email: response.data.email,
           googleId: response.data.sub,
           imageUrl: response.data.picture,
         };
 
-        localStorage.setItem("user", JSON.stringify(user));
-
-        if (user.email === "admin@gmail.com") {
-          navigate("/admin");
-        } else {
-          navigate("/student");
-        }
+        setGoogleUserData(userData);
+        setEmail(userData.email); // Pre-fill email
+        setName(userData.name); // Pre-fill name
         handleLoginClose();
-        handleSignupClose();
+        handleSignupShow(); // Open signup modal
       } catch (error) {
         alert("Google login failed. Please try again.");
         console.error("Google login error:", error);
@@ -183,12 +181,7 @@ const Home = () => {
             >
               <FaGoogle className="social-icon" /> Continue with Google
             </Button>
-            <Button
-              onClick={handleFacebookLogin}
-              className="social-btn facebook-btn"
-            >
-              <FaFacebook className="social-icon" /> Continue with Facebook
-            </Button>
+        
           </div>
 
           <div className="divider">

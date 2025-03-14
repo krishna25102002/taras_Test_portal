@@ -1,20 +1,23 @@
 import axios from "axios";
+const BASE_URL = "http://localhost:4000"; // Ensure this matches your backend
 
 export const sendOTP = async (email) => {
   try {
-    const response = await axios.post("/api/auth/send-otp", { email });
+    const response = await axios.post(`${BASE_URL}/api/auth/send-otp`, { email });
     return response.data;
   } catch (error) {
-    throw new Error("Failed to send OTP");
+    console.error("Error sending OTP:", error.response?.data || error.message);
+    throw new Error(error.response?.data?.message || "Failed to send OTP");
   }
 };
 
 export const verifyOTP = async (email, otp) => {
   try {
-    const response = await axios.post("/api/auth/verify-otp", { email, otp });
+    const response = await axios.post(`${BASE_URL}/api/auth/verify-otp`, { email, otp });
     return response.data;
   } catch (error) {
-    throw new Error("Invalid OTP");
+    console.error("Error verifying OTP:", error.response?.data || error.message);
+    throw new Error(error.response?.data?.message || "Invalid OTP");
   }
 };
 

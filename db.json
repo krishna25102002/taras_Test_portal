@@ -348,86 +348,44 @@
         "embedded": 0,
         "vlsi": 0
       }
+    },
+    {
+      "id": "e166",
+      "name": "krishna",
+      "email": "krishna006669kumar@gmail.com",
+      "class": "12",
+      "department": "ece",
+      "city": "cbe",
+      "collegeName": "NGP",
+      "phoneNumber": "9965774500",
+      "testSection": "Embedded",
+      "marks": {
+        "embedded": 0,
+        "vlsi": 0
+      }
+    },
+    {
+      "id": "a81e",
+      "name": "Krishna Kumar D",
+      "email": "tripdaries01@gmail.com",
+      "class": "12",
+      "department": "ece",
+      "city": "cbe",
+      "collegeName": "NGP",
+      "phoneNumber": "9965774500",
+      "testSection": "VLSI",
+      "marks": {
+        "embedded": 0,
+        "vlsi": 0
+      }
     }
   ],
   "users": [
     {
-      "name": "Admin",
-      "email": "admin@gmail.com",
-      "password": "$2a$10$IdhLnsaibbWmVWKCtxo/jOuMuRO.nQ.in4/a2hgWBkQJb6ZKp.njm",
-      "id": "8QCAR7Y"
-    },
-    {
-      "name": "Akash",
-      "email": "akash@gmail.com",
-      "password": "$2a$10$hwJy5dEEU4ITBGfU1yGz7eDG/6otb1VDF5TAGMAHrF3hv2.nJuUIe",
-      "id": "E1WOzBw"
-    },
-    {
-      "name": "Akash",
-      "email": "akash1@gmail.com",
-      "password": "$2a$10$iVq5HzqM97nz6uGV9pWNHevvBQoTjxZAYsYFP7f4Yb9MOEJCZup6S",
-      "id": "L8K8oRU"
-    },
-    {
-      "id": "fc1a",
-      "name": "krishna kumar D",
-      "email": "krishna0006669kumar@gmail.com",
-      "password": "$2a$10$zLDDzwYzDTekFVT.1QPc8.EoHk33QikIg9W.DpLplfXdwrjDpbXw2"
-    },
-    {
-      "id": "92de",
+      "id": "5188",
       "name": "Krishna Kumar D",
-      "email": "dfsagagg@gmail.com",
-      "password": "$2a$10$SJ5IKZFBogc5WBuQWr0lhOMGK.IGrH4SONwHNEoWU4ctwUu2u7rSK"
-    },
-    {
-      "id": "7ae1",
-      "name": "Krishna Kumar D",
-      "email": "fggdsgfg@gmail.com",
-      "password": "$2a$10$5HSVk7nnuDt5N/o2c/WTDuA3Lt.CWsJcZPuUVimZPezo7Wlr1Mb9."
-    },
-    {
-      "id": "75ce",
-      "name": "Krishna Kumar D",
-      "email": "dfs@gmail.com",
-      "password": "$2a$10$cc9IgKG7LK1tByZUd8kji.KD3bgosIJbUfmWU5lD5MYmW2oCPw.d2"
-    },
-    {
-      "id": "39f9",
-      "name": "Krishna Kumar D",
-      "email": "g@gmail.com",
-      "password": "$2a$10$D6XLNyhLN./sR6x.cQcLoOsVI.TjAGp2APNBHIpRRCCUxWYqnaGk6"
-    },
-    {
-      "id": "1c45",
-      "name": "Krishna Kumar D",
-      "email": "ad@gmail.com",
-      "password": "$2a$10$AlTGwQgOMNN83RHScRLXSOCbE7HTalIjJTV.4lDfng3HGcsltQ2bC"
-    },
-    {
-      "id": "8b51",
-      "name": "Krishna Kumar D",
-      "email": "assd@gmail.com",
-      "password": "$2a$10$9ewWhNppR4F1cry6f.wzzOTUCpq4xJy6iwsLfbJOC5hB6cZvCQdk6"
-    },
-    {
-      "id": "0c29",
-      "name": "Krishna Kumar D",
-      "email": "kd@gmail.com",
-      "password": "$2a$10$uZ7i1Yr5LxGzVjEpKgHSYOBgF/Ldsjx2AxLB/U3QjsIePr/LlEZWC"
-    },
-    {
-      "name": "Kavin",
-      "email": "kavin@gmail.com",
-      "password": "$2a$10$.IwVudyb6H3y.gkVw/0etO/lFi7mzCGVjU6tptt2Ud8R9ZfVplbBK",
-      "id": "BsyQSPg"
-    },
-    {
-      "id": "8c2b",
-      "name": "krishna",
-      "email": "krishna006669kumar@gmail.com",
-      "password": "$2a$10$GK0REuFP6cUTpdKdL9QRI.fAs8nLIq3M0BqjmArPdGPsfLdRt8gGi"
+      "email": "tripdaries01@gmail.com",
+      "password": "$2a$10$3H.2kORLNFAnGSUiy0lkQuxAOqia6s1ZzyIiOVH2bJ9mTgNT8Bh5i"
     }
   ]
 }
