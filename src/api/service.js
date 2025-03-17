@@ -286,19 +286,30 @@ export const registerUser = async (user) => {
 // Login a user (admin or student)
 export const loginUser = async (email, password) => {
   try {
-    const response = await fetch(`${BASE_URL}/users?email=${email}`);
+    console.log("Login request:", { email, password });
+
+    // Fetch all users
+    const response = await fetch(`${BASE_URL}/users`);
     if (!response.ok) {
-      throw new Error("Failed to fetch user");
+      throw new Error("Failed to fetch users");
     }
+
     const users = await response.json();
-    if (users.length === 0) {
+    console.log("Users found:", users);
+
+    // Find the user by email (case-insensitive)
+    const user = users.find((u) => u.email.toLowerCase() === email.toLowerCase());
+    if (!user) {
       throw new Error("User not found");
     }
-    const user = users[0];
+
+    // Verify the password
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
       throw new Error("Invalid credentials");
     }
+
+    console.log("Login successful:", user);
     return user;
   } catch (error) {
     console.error("Error logging in user:", error);

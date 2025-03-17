@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Container, Row, Col, Modal, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { registerUser, loginUser } from "../../api/service";
@@ -6,11 +6,12 @@ import { FaGoogle, FaFacebook } from "react-icons/fa";
 import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
 import "./Home.css";
 import axios from "axios"; // Import axios
-import { sendOTP, verifyOTP } from "../../api/authService"; // Import sendOTP and verifyOTP functions
+import { sendOTP, verifyOTP, resetPassword} from "../../api/authService"; // Import sendOTP and verifyOTP functions
 
 const Home = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
+  const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -18,15 +19,27 @@ const Home = () => {
   const [showOtpField, setShowOtpField] = useState(false);
   const [otp, setOtp] = useState("");
   const [isOtpVerified, setIsOtpVerified] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
+  const [resetOtp, setResetOtp] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [showResetOtpField, setShowResetOtpField] = useState(false);
   const [googleUserData, setGoogleUserData] = useState(null);
   const navigate = useNavigate();
 
+  // Modal handlers
   const handleLoginShow = () => setShowLoginModal(true);
   const handleLoginClose = () => setShowLoginModal(false);
 
   const handleSignupShow = () => setShowSignupModal(true);
   const handleSignupClose = () => setShowSignupModal(false);
 
+  const handleForgotPasswordShow = () => {
+    handleLoginClose();
+    setShowForgotPasswordModal(true);
+  };
+  const handleForgotPasswordClose = () => setShowForgotPasswordModal(false);
+
+  // Login handler
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -46,6 +59,7 @@ const Home = () => {
     handleLoginClose();
   };
 
+  // Signup handler
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
     if (!isOtpVerified) {
@@ -70,6 +84,7 @@ const Home = () => {
     }
   };
 
+  // Google login handler
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
@@ -105,11 +120,13 @@ const Home = () => {
     },
   });
 
+  // Facebook login handler
   const handleFacebookLogin = () => {
     // Implement your Facebook login logic here
     console.log("Facebook login clicked");
   };
 
+  // Send OTP handler
   const handleSendOTP = async () => {
     try {
       await sendOTP(email);
@@ -120,6 +137,7 @@ const Home = () => {
     }
   };
 
+  // Verify OTP handler
   const handleVerifyOTP = async () => {
     try {
       await verifyOTP(email, otp);
@@ -127,6 +145,58 @@ const Home = () => {
       alert("Email verified successfully!");
     } catch (error) {
       alert(error.message);
+    }
+  };
+
+  // Send reset OTP handler
+  const handleSendResetOtp = async () => {
+    try {
+      await sendOTP(resetEmail);
+      setShowResetOtpField(true);
+      alert("Reset OTP sent to your email!");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  // // Forgot password handler
+  // const handleForgotPasswordSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     await verifyOTP(resetEmail, resetOtp);
+
+  //     // Call your backend API to reset the password
+  //     const response = await axios.post("http://localhost:4000/api/auth/reset-password", {
+  //       email: resetEmail,
+  //       newPassword,
+  //     });
+
+  //     alert(response.data.message);
+  //     handleForgotPasswordClose();
+  //   } catch (error) {
+  //     alert(error.response?.data?.message || "Failed to reset password");
+  //   }
+  // };
+
+   // Forgot password handler
+   const handleForgotPasswordSubmit = async (e) => {
+    e.preventDefault();
+    if (!resetEmail || !resetOtp || !newPassword) {
+      alert("Please fill in all fields.");
+      return;
+    }
+    try {
+      // Verify the OTP first
+      await verifyOTP(resetEmail, resetOtp);
+
+      // Reset the password using the resetPassword function
+      console.log("resetting of the password", resetEmail, resetOtp, newPassword);
+      await resetPassword(resetEmail, resetOtp, newPassword);
+
+      alert("Password reset successfully!");
+      handleForgotPasswordClose();
+    } catch (error) {
+      alert(error.message); // Display the error message from resetPassword
     }
   };
 
@@ -181,7 +251,6 @@ const Home = () => {
             >
               <FaGoogle className="social-icon" /> Continue with Google
             </Button>
-        
           </div>
 
           <div className="divider">
@@ -222,6 +291,15 @@ const Home = () => {
                 }}
               >
                 Sign Up
+              </span>
+            </p>
+            <p className="auth-switch">
+              Forgot Password?{" "}
+              <span
+                className="auth-link"
+                onClick={handleForgotPasswordShow}
+              >
+                Reset Password
               </span>
             </p>
           </div>
@@ -346,6 +424,73 @@ const Home = () => {
               </span>
             </p>
           </div>
+        </Modal.Body>
+      </Modal>
+
+      {/* Forgot Password Modal */}
+      <Modal
+        show={showForgotPasswordModal}
+        onHide={handleForgotPasswordClose}
+        centered
+        size="md"
+        className="auth-modal"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title className="w-100 text-center">
+            <h2 className="modal-main-title">Forgot Password</h2>
+            <p className="modal-subtitle">
+              Enter your email to reset your password.
+            </p>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="px-4">
+          <Form onSubmit={handleForgotPasswordSubmit}>
+            <Form.Group className="mb-4">
+              <Form.Control
+                type="email"
+                placeholder="Email"
+                value={resetEmail}
+                onChange={(e) => setResetEmail(e.target.value)}
+                className="auth-input"
+              />
+            </Form.Group>
+
+            {!showResetOtpField && (
+              <Button
+                onClick={handleSendResetOtp}
+                className="auth-submit-btn"
+                disabled={!resetEmail}
+              >
+                Send Reset OTP
+              </Button>
+            )}
+
+            {showResetOtpField && (
+              <>
+                <Form.Group className="mb-4">
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter OTP"
+                    value={resetOtp}
+                    onChange={(e) => setResetOtp(e.target.value)}
+                    className="auth-input"
+                  />
+                </Form.Group>
+                <Form.Group className="mb-4">
+                  <Form.Control
+                    type="password"
+                    placeholder="New Password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    className="auth-input"
+                  />
+                </Form.Group>
+                <Button type="submit" className="auth-submit-btn">
+                  Reset Password
+                </Button>
+              </>
+            )}
+          </Form>
         </Modal.Body>
       </Modal>
     </Container>
