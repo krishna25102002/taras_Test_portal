@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Button, Container, Row, Col, Modal, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../api/service";
-import { FaGoogle, FaFacebook } from "react-icons/fa";
-import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
+import { FaGoogle } from "react-icons/fa";
+import { useGoogleLogin } from "@react-oauth/google";
 import "./Home.css";
-import axios from "axios"; // Import axios
-import { sendOTP, verifyOTP, resetPassword, registerUser } from "../../api/authService"; // Import sendOTP and verifyOTP functions
+import axios from "axios";
+import { sendOTP, resetPassword, registerUser } from "../../api/authService";
 
 const Home = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -26,67 +26,71 @@ const Home = () => {
   const [googleUserData, setGoogleUserData] = useState(null);
   const navigate = useNavigate();
 
-
-
-  // Modal handlers
   const handleLoginShow = () => setShowLoginModal(true);
   const handleLoginClose = () => setShowLoginModal(false);
-
   const handleSignupShow = () => setShowSignupModal(true);
-  const handleSignupClose = () => setShowSignupModal(false);
-
+  const handleSignupClose = () => {
+    setShowSignupModal(false);
+    setShowOtpField(false);
+    setOtp("");
+    setIsOtpVerified(false);
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+    setName("");
+  };
   const handleForgotPasswordShow = () => {
     handleLoginClose();
     setShowForgotPasswordModal(true);
   };
-  const handleForgotPasswordClose = () => setShowForgotPasswordModal(false);
+  const handleForgotPasswordClose = () => {
+    setShowForgotPasswordModal(false);
+    setShowResetOtpField(false);
+    setResetEmail("");
+    setResetOtp("");
+    setNewPassword("");
+  };
 
-  // Login handler
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
       const user = await loginUser(email, password);
-
-      // Save user details to localStorage
       localStorage.setItem("user", JSON.stringify(user));
-
       if (user.email === "admin@gmail.com" && password === "Admin@123") {
         navigate("/admin");
       } else {
         navigate("/student");
       }
+      handleLoginClose();
     } catch (error) {
-      alert(error.message);
+      alert(error.message || "Failed to login");
     }
-    handleLoginClose();
   };
 
-  // Signup handler
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
-    if (!isOtpVerified) {
-      alert("Please verify your email first!");
-      return;
-    }
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
+
     try {
-      const newUser = { name, email, password };
+      // Step 1: Register the user
+      const newUser = { email, password };
+      console.log("Registering user:", newUser);
       await registerUser(newUser);
+      console.log("User registered successfully");
 
-      // Save user details to localStorage
-      localStorage.setItem("user", JSON.stringify(newUser));
-
-      alert("User registered successfully!");
-      handleSignupClose();
+      // Step 2: Send OTP for email verification
+      console.log("Sending OTP to:", email);
+      await sendOTP(email);
+      setShowOtpField(true);
+      alert("OTP sent to your email!");
     } catch (error) {
-      alert("Error registering user");
+      alert(error.message || "Error during signup");
     }
   };
 
-  // Google login handler
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
@@ -107,10 +111,10 @@ const Home = () => {
         };
 
         setGoogleUserData(userData);
-        setEmail(userData.email); // Pre-fill email
-        setName(userData.name); // Pre-fill name
+        setEmail(userData.email);
+        setName(userData.name);
         handleLoginClose();
-        handleSignupShow(); // Open signup modal
+        handleSignupShow();
       } catch (error) {
         alert("Google login failed. Please try again.");
         console.error("Google login error:", error);
@@ -122,83 +126,43 @@ const Home = () => {
     },
   });
 
-  // Facebook login handler
-  const handleFacebookLogin = () => {
-    // Implement your Facebook login logic here
-    console.log("Facebook login clicked");
-  };
-
-  // Send OTP handler
-  const handleSendOTP = async () => {
-    try {
-      await sendOTP(email);
-      setShowOtpField(true);
-      alert("OTP sent to your email!");
-    } catch (error) {
-      alert(error.message);
-    }
-  };
-
-  // Verify OTP handler
   const handleVerifyOTP = async () => {
     try {
-      await verifyOTP(email, otp);
+      await axios.post("http://localhost:4000/api/auth/verify-otp", { email, otp });
       setIsOtpVerified(true);
+      setShowOtpField(false);
       alert("Email verified successfully!");
+      localStorage.setItem("user", JSON.stringify({ email }));
+      navigate("/student");
+      handleSignupClose();
     } catch (error) {
-      alert(error.message);
+      alert(error.response?.data?.message || "Failed to verify OTP");
     }
   };
 
-  // Send reset OTP handler
   const handleSendResetOtp = async () => {
     try {
       await sendOTP(resetEmail);
       setShowResetOtpField(true);
       alert("Reset OTP sent to your email!");
     } catch (error) {
-      alert(error.message);
+      alert(error.message || "Failed to send OTP");
     }
   };
 
-  // // Forgot password handler
-  // const handleForgotPasswordSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     await verifyOTP(resetEmail, resetOtp);
-
-  //     // Call your backend API to reset the password
-  //     const response = await axios.post("http://localhost:4000/api/auth/reset-password", {
-  //       email: resetEmail,
-  //       newPassword,
-  //     });
-
-  //     alert(response.data.message);
-  //     handleForgotPasswordClose();
-  //   } catch (error) {
-  //     alert(error.response?.data?.message || "Failed to reset password");
-  //   }
-  // };
-
-   // Forgot password handler
-   const handleForgotPasswordSubmit = async (e) => {
+  const handleForgotPasswordSubmit = async (e) => {
     e.preventDefault();
     if (!resetEmail || !resetOtp || !newPassword) {
       alert("Please fill in all fields.");
       return;
     }
     try {
-      // Verify the OTP first
-      await verifyOTP(resetEmail, resetOtp);
-
-      // Reset the password using the resetPassword function
-      console.log("resetting of the password", resetEmail, resetOtp, newPassword);
+      console.log("Calling resetPassword with:", { resetEmail, resetOtp, newPassword });
       await resetPassword(resetEmail, resetOtp, newPassword);
-
       alert("Password reset successfully!");
       handleForgotPasswordClose();
     } catch (error) {
-      alert(error.message); // Display the error message from resetPassword
+      alert(error.message || "Failed to reset password");
     }
   };
 
@@ -240,23 +204,21 @@ const Home = () => {
         <Modal.Header closeButton>
           <Modal.Title className="w-100 text-center">
             <h2 className="modal-main-title">Log In to Your Account</h2>
-            <p className="modal-subtitle">
-            </p>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="px-4">
           <div className="social-login-buttons">
-            {/* <Button
+            <Button
               onClick={() => googleLogin()}
               className="social-btn google-btn"
             >
               <FaGoogle className="social-icon" /> Continue with Google
-            </Button> */}
+            </Button>
           </div>
-{/* 
+
           <div className="divider">
             <span className="divider-text">or</span>
-          </div> */}
+          </div>
 
           <Form onSubmit={handleLoginSubmit}>
             <Form.Group className="mb-4">
@@ -266,6 +228,7 @@ const Home = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="auth-input"
+                required
               />
             </Form.Group>
             <Form.Group className="mb-4">
@@ -275,6 +238,7 @@ const Home = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="auth-input"
+                required
               />
             </Form.Group>
             <Button type="submit" className="auth-submit-btn">
@@ -318,7 +282,6 @@ const Home = () => {
         <Modal.Header closeButton>
           <Modal.Title className="w-100 text-center">
             <h2 className="modal-main-title">Sign Up for Free</h2>
-            {/* <p className="modal-subtitle">Join our learning community today!</p> */}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="px-4">
@@ -329,12 +292,6 @@ const Home = () => {
             >
               <FaGoogle className="social-icon" /> Continue with Google
             </Button>
-            {/* <Button
-              onClick={handleFacebookLogin}
-              className="social-btn facebook-btn"
-            >
-              <FaFacebook className="social-icon" /> Continue with Facebook
-            </Button> */}
           </div>
 
           <div className="divider">
@@ -349,6 +306,7 @@ const Home = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="auth-input"
+                required
               />
             </Form.Group>
             <Form.Group className="mb-4">
@@ -358,16 +316,28 @@ const Home = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="auth-input"
+                required
               />
-              {!showOtpField && (
-                <Button
-                  onClick={handleSendOTP}
-                  className="mt-2 verify-btn"
-                  disabled={!email}
-                >
-                  Send OTP
-                </Button>
-              )}
+            </Form.Group>
+            <Form.Group className="mb-4">
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="auth-input"
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-4">
+              <Form.Control
+                type="password"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="auth-input"
+                required
+              />
             </Form.Group>
 
             {showOtpField && (
@@ -378,10 +348,11 @@ const Home = () => {
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
                   className="auth-input"
+                  required
                 />
                 <Button
                   onClick={handleVerifyOTP}
-                  className="mt-2 verify-btn"
+                  className="mt-2 auth-submit-btn"
                   disabled={!otp}
                 >
                   Verify OTP
@@ -389,27 +360,11 @@ const Home = () => {
               </Form.Group>
             )}
 
-            <Form.Group className="mb-4">
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="auth-input"
-              />
-            </Form.Group>
-            <Form.Group className="mb-4">
-              <Form.Control
-                type="password"
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="auth-input"
-              />
-            </Form.Group>
-            <Button type="submit" className="auth-submit-btn">
-              Sign Up
-            </Button>
+            {!showOtpField && (
+              <Button type="submit" className="auth-submit-btn">
+                Sign Up
+              </Button>
+            )}
           </Form>
           <div className="text-center mt-4">
             <p className="auth-switch">
@@ -453,6 +408,7 @@ const Home = () => {
                 value={resetEmail}
                 onChange={(e) => setResetEmail(e.target.value)}
                 className="auth-input"
+                required
               />
             </Form.Group>
 
@@ -475,6 +431,7 @@ const Home = () => {
                     value={resetOtp}
                     onChange={(e) => setResetOtp(e.target.value)}
                     className="auth-input"
+                    required
                   />
                 </Form.Group>
                 <Form.Group className="mb-4">
@@ -484,6 +441,7 @@ const Home = () => {
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                     className="auth-input"
+                    required
                   />
                 </Form.Group>
                 <Button type="submit" className="auth-submit-btn">
