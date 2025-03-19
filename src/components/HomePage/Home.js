@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Button, Container, Row, Col, Modal, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { registerUser, loginUser } from "../../api/service";
+import { loginUser } from "../../api/service";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
 import "./Home.css";
 import axios from "axios"; // Import axios
-import { sendOTP, verifyOTP, resetPassword} from "../../api/authService"; // Import sendOTP and verifyOTP functions
+import { sendOTP, verifyOTP, resetPassword, registerUser } from "../../api/authService"; // Import sendOTP and verifyOTP functions
 
 const Home = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -25,6 +25,8 @@ const Home = () => {
   const [showResetOtpField, setShowResetOtpField] = useState(false);
   const [googleUserData, setGoogleUserData] = useState(null);
   const navigate = useNavigate();
+
+
 
   // Modal handlers
   const handleLoginShow = () => setShowLoginModal(true);
@@ -239,23 +241,22 @@ const Home = () => {
           <Modal.Title className="w-100 text-center">
             <h2 className="modal-main-title">Log In to Your Account</h2>
             <p className="modal-subtitle">
-              Learn on your own time from top universities and businesses.
             </p>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="px-4">
           <div className="social-login-buttons">
-            <Button
+            {/* <Button
               onClick={() => googleLogin()}
               className="social-btn google-btn"
             >
               <FaGoogle className="social-icon" /> Continue with Google
-            </Button>
+            </Button> */}
           </div>
-
+{/* 
           <div className="divider">
             <span className="divider-text">or</span>
-          </div>
+          </div> */}
 
           <Form onSubmit={handleLoginSubmit}>
             <Form.Group className="mb-4">
@@ -317,7 +318,7 @@ const Home = () => {
         <Modal.Header closeButton>
           <Modal.Title className="w-100 text-center">
             <h2 className="modal-main-title">Sign Up for Free</h2>
-            <p className="modal-subtitle">Join our learning community today!</p>
+            {/* <p className="modal-subtitle">Join our learning community today!</p> */}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="px-4">
@@ -328,12 +329,12 @@ const Home = () => {
             >
               <FaGoogle className="social-icon" /> Continue with Google
             </Button>
-            <Button
+            {/* <Button
               onClick={handleFacebookLogin}
               className="social-btn facebook-btn"
             >
               <FaFacebook className="social-icon" /> Continue with Facebook
-            </Button>
+            </Button> */}
           </div>
 
           <div className="divider">

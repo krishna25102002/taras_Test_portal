@@ -204,13 +204,28 @@
       "id": "9vx_Dpl"
     }
   ],
-  "students": [],
-  "users": [
+  "students": [
     {
-      "id": "70f2",
+      "id": "10f9",
       "name": "Krishna Krishna",
       "email": "tripdaries01@gmail.com",
-      "password": "$2a$10$HqAXvNKok0SWClHRLf/RQOC3WG2gMbz5Ql0m82uDGBZvwjIX/oUYe"
+      "class": "12",
+      "department": "ece",
+      "city": "cbe",
+      "collegeName": "NGP",
+      "phoneNumber": "9965774500",
+      "testSection": "Embedded",
+      "marks": {
+        "embedded": 0,
+        "vlsi": 0
+      }
+    }
+  ],
+  "users": [
+    {
+      "id": "f882",
+      "email": "tripdaries01@gmail.com",
+      "password": "$2a$10$3bhpg9Bv.3bwP8ruw7iAkuWWHdR8C0T4N9Ud8kA7LRJD1lnzXGxGe"
     }
   ]
 }

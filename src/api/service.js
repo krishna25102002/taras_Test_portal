@@ -249,39 +249,39 @@ export const updateEnabledSections = async (updatedSections) => {
   }
 };
 
-export const registerUser = async (user) => {
-  try {
-    // Check if email already exists
-    const emailCheckResponse = await fetch(
-      `${BASE_URL}/users?email=${user.email}`
-    );
-    const existingUsers = await emailCheckResponse.json();
+// export const registerUser = async (user) => {
+//   try {
+//     // Check if email already exists
+//     const emailCheckResponse = await fetch(
+//       `${BASE_URL}/users?email=${user.email}`
+//     );
+//     const existingUsers = await emailCheckResponse.json();
 
-    if (existingUsers.length > 0) {
-      throw new Error("Email already in use. Please choose a different email.");
-    }
+//     if (existingUsers.length > 0) {
+//       throw new Error("Email already in use. Please choose a different email.");
+//     }
 
-    // Encrypt the password before storing
-    const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(user.password, salt);
+//     // Encrypt the password before storing
+//     const salt = await bcrypt.genSalt(10);
+//     user.password = await bcrypt.hash(user.password, salt);
 
-    // Register the new user
-    const response = await fetch(`${BASE_URL}/users`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(user),
-    });
+//     // Register the new user
+//     const response = await fetch(`${BASE_URL}/users`, {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify(user),
+//     });
 
-    if (!response.ok) {
-      throw new Error("Failed to register user");
-    }
+//     if (!response.ok) {
+//       throw new Error("Failed to register user");
+//     }
 
-    return response.json();
-  } catch (error) {
-    console.error("Error registering user:", error);
-    throw error;
-  }
-};
+//     return response.json();
+//   } catch (error) {
+//     console.error("Error registering user:", error);
+//     throw error;
+//   }
+// };
 
 // Login a user (admin or student)
 export const loginUser = async (email, password) => {
