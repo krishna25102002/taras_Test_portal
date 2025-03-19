@@ -23,7 +23,7 @@ function App() {
     <GoogleOAuthProvider clientId="448430774246-9bu60as3s9fcjapbabln7fsfs4nuc43k.apps.googleusercontent.com">
       <Router>
         <div className="App">
-          <Routes>
+          <Routes> 
             {/* Admin Portal Routes */}
             <Route path="/admin" element={<AdminPortal />} />
             <Route path="/admin/add" element={<AddQuestion />} />

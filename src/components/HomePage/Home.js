@@ -133,7 +133,7 @@ const Home = () => {
       setShowOtpField(false);
       alert("Email verified successfully!");
       localStorage.setItem("user", JSON.stringify({ email }));
-      navigate("/student");
+      navigate("/");
       handleSignupClose();
     } catch (error) {
       alert(error.response?.data?.message || "Failed to verify OTP");
