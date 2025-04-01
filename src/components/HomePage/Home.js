@@ -24,6 +24,7 @@ const Home = () => {
   const [newPassword, setNewPassword] = useState("");
   const [showResetOtpField, setShowResetOtpField] = useState(false);
   const [googleUserData, setGoogleUserData] = useState(null);
+  const [rememberMe, setRememberMe] = useState(false); // Added Remember Me state
   const navigate = useNavigate();
 
   const handleLoginShow = () => setShowLoginModal(true);
@@ -55,7 +56,16 @@ const Home = () => {
     e.preventDefault();
     try {
       const user = await loginUser(email, password);
-      localStorage.setItem("user", JSON.stringify(user));
+      
+      // Store user data based on remember me preference
+      if (rememberMe) {
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("rememberMe", "true");
+      } else {
+        sessionStorage.setItem("user", JSON.stringify(user));
+        localStorage.removeItem("rememberMe");
+      }
+
       if (user.email === "admin@gmail.com" && password === "Admin@123") {
         navigate("/admin");
       } else {
@@ -75,13 +85,11 @@ const Home = () => {
     }
 
     try {
-      // Step 1: Register the user
       const newUser = { email, password };
       console.log("Registering user:", newUser);
       await registerUser(newUser);
       console.log("User registered successfully");
 
-      // Step 2: Send OTP for email verification
       console.log("Sending OTP to:", email);
       await sendOTP(email);
       setShowOtpField(true);
@@ -241,6 +249,17 @@ const Home = () => {
                 required
               />
             </Form.Group>
+            
+            <Form.Group className="mb-4">
+              <Form.Check 
+                type="checkbox"
+                label="Remember Me"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                className="remember-me-checkbox"
+              />
+            </Form.Group>
+
             <Button type="submit" className="auth-submit-btn">
               Login
             </Button>

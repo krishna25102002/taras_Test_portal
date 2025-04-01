@@ -223,11 +223,18 @@
   ],
   "users": [
     {
-      "id": "67db044e1b4a23a0f116b17f",
-      "email": "krishna006669kumar@gmail.com",
-      "password": "$2a$10$58tK8CG3svERypVns7l8IOTKj/ny3CfPJx6zU6UNuI7rq05Hd2eAW",
+      "id": "67dc3540ba50ab77480fcd5f",
+      "email": "admin123@gmail.com",
+      "password": "$2a$10$//wTJyzPrY1bAIh1pvxrDOwWdfDFOUGVJMWLkguSsga7xhb6gAj7i",
       "otp": null,
       "otpExpiry": null
-    }
+    } 
+   {
+      "id": "67dc3540ba50ab77480fcd5f",
+      "email": "tripdaries01@gmail.com",
+      "password": "$2a$10$//wTJyzPrY1bAIh1pvxrDOwWdfDFOUGVJMWLkguSsga7xhb6gAj7i",
+      "otp": null,
+      "otpExpiry": null
+    } 
   ]
 }

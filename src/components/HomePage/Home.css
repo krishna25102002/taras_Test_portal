@@ -4,7 +4,19 @@
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+.remember-me-checkbox {
+  cursor: pointer;
+}
 
+.remember-me-checkbox .form-check-input {
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.remember-me-checkbox .form-check-label {
+  cursor: pointer;
+  font-size: 0.9rem;
+}
 .container {
   background-color: #e3f2fd;
   padding: 3rem; 
